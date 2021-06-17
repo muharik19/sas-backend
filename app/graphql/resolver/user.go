@@ -175,7 +175,7 @@ func getUserByID(UserID int, isDeleted int) models.UserTypeModel {
 
 	query := fmt.Sprintf(`
 		select 
-			su.id,su.username,su.email,su.emp_no,su.fullname,su.grade,su.positions,su.photo,su.role_id,sr.role_name,su.created_at,su.created_by,su.modified_at,su.modified_by
+			su.id,su.username,su.email,su.emp_no,su.fullname,su.grade,su.positions,su.photo,su.role_id,sr.role_name,su.created_at,su.created_by,su.modified_at,su.modified_by,su.is_deleted
 		from sas_user su 
 		join sas_role sr on sr.id = su.role_id
 		where su.is_deleted = %d and su.id = %d;
@@ -204,6 +204,7 @@ func getUserByID(UserID int, isDeleted int) models.UserTypeModel {
 			&rowData.CreatedBy,
 			&rowData.ModifiedAt,
 			&rowData.ModifiedBy,
+			&rowData.IsDeleted,
 		)
 
 		if err != nil {
@@ -571,6 +572,7 @@ func DeleteUser(id int, params graphql.ResolveParams) (models.UserTypeModel, err
 	for rowsQ.Next() {
 		err = rowsQ.Scan(
 			&rowData.ID,
+			&rowData.IsDeleted,
 		)
 
 		if err != nil {

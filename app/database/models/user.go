@@ -43,6 +43,7 @@ type UserTypeModel struct {
 	CreatedBy  string      `json:"created_by"`
 	ModifiedAt interface{} `json:"modified_at"`
 	ModifiedBy interface{} `json:"modified_by"`
+	IsDeleted  interface{} `json:"is_deleted"`
 }
 
 //ListUserModel struct
