@@ -1,2 +1,5 @@
 # sas-backend
-backend golang graphql database postgresql sql
+- Backend golang GraphQL
+- Database PostgreSQL
+
+Happy coding!
