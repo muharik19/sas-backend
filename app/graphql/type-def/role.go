@@ -22,6 +22,7 @@ func RoleAccessType(typeName string) *graphql.Object {
 	return graphql.NewObject(graphql.ObjectConfig{
 		Name: typeName,
 		Fields: graphql.Fields{
+			"id":         &graphql.Field{Type: graphql.Int},
 			"moduleId":   &graphql.Field{Type: graphql.Int},
 			"moduleName": &graphql.Field{Type: graphql.String},
 			"create":     &graphql.Field{Type: graphql.Boolean},
@@ -66,7 +67,7 @@ func RolesType(typeName string) *graphql.Object {
 	})
 }
 
-//ListRoleType function
+// ListRoleType function
 func ListRoleType() *graphql.Object {
 	return graphql.NewObject(graphql.ObjectConfig{
 		Name: "listRoleType",
