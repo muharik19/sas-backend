@@ -20,7 +20,7 @@ func getAccessByRoleID(roleID int) []models.RoleAccess {
 
 	query := fmt.Sprintf(`
 		select 
-			sm.id module_id,sm.name module_name,coalesce(sra.c, 0) c,coalesce(sra.r, 0) r,coalesce(sra.u, 0) u,coalesce(sra.d, 0) d
+			sm.id module_id,sm.name module_name,sra.id,coalesce(sra.c, 0) c,coalesce(sra.r, 0) r,coalesce(sra.u, 0) u,coalesce(sra.d, 0) d
 		from sas_module sm
 		left join sas_role_access sra on sra.module_id = sm.id and sra.role_id = %d;
 	`, roleID)
@@ -36,6 +36,7 @@ func getAccessByRoleID(roleID int) []models.RoleAccess {
 		err = rowsQ.Scan(
 			&item.ModuleID,
 			&item.ModuleName,
+			&item.ID,
 			&item.Create,
 			&item.Read,
 			&item.Update,
