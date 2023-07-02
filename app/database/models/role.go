@@ -12,6 +12,7 @@ type Modules struct {
 
 // RoleAccess ...
 type RoleAccess struct {
+	ID         int    `json:"id"`
 	ModuleID   int    `json:"module_id"`
 	ModuleName string `json:"module_name"`
 	Create     bool   `json:"c"`
